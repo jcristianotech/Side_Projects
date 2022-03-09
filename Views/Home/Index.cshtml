@@ -1,0 +1,87 @@
+﻿@using JohnTestWebApp.Models
+@using JohnTestWebApp.Data
+@model IEnumerable<TeamViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>USHL Teams</h2>
+<p>All teams by conference in USHL.</p>
+<br />
+<h4><b>Eastern Conference</b></h4>
+<table>
+
+    <thead>
+        <tr>
+            <td></td>
+            <td class="teamName"><b>Name</b></td>
+            <td class="yearFounded"><b>Year Founded</b></td>
+            <td class="arenaName"><b>Arena</b></td>
+            <td class="arenaCapacity"><b>Capacity</b></td>
+            <td class="cityName"><b>City</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamViewModel team in Model)
+        {
+            if (team.Conference == TeamConference.Eastern)
+            {
+                <tr>
+                    @if (File.Exists(Server.MapPath("/Images/" + team.TeamPictureFileName)))
+                    {
+                        <td><img id="indexPic" src="/Images/@team.TeamPictureFileName" /></td>
+                    }
+                    else
+                    {
+                        <td> <img id="indexPic" src="/Images/USHL.jpg" /></td>
+                    }
+                    <td class="teamName">@Html.ActionLink(team.Name, "Update", new { id = team.Id })</td>
+                    <td class="yearFounded">@team.YearFounded</td>
+                    <td class="arenaName">@team.Arena</td>
+                    <td class="arenaCapacity">@team.Capacity</td>
+                    <td class="cityName">@team.City</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<br />
+    <h4><b>Western Conference</b></h4>
+<table>
+
+    <thead>
+        <tr>
+            <td></td>
+            <td class="teamName"><b>Name</b></td>
+            <td class="yearFounded"><b>Year Founded</b></td>
+            <td class="arenaName"><b>Arena</b></td>
+            <td class="arenaCapacity"><b>Capacity</b></td>
+            <td class="cityName"><b>City</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamViewModel team in Model)
+        {
+            if (team.Conference == TeamConference.Western)
+            {
+                <tr>
+                    @if (File.Exists(Server.MapPath("/Images/" + team.TeamPictureFileName)))
+                    {
+                        <td><img id="indexPic" src="/Images/@team.TeamPictureFileName" /></td>
+                    }
+                    else
+                    {
+                        <td> <img id="indexPic" src="/Images/USHL.jpg" /></td>
+                    }
+                    <td class="teamName">@Html.ActionLink(team.Name, "Update", new { id = team.Id })</td>
+                    <td class="yearFounded">@team.YearFounded</td>
+                    <td class="arenaName">@team.Arena</td>
+                    <td class="arenaCapacity">@team.Capacity</td>
+                    <td class="cityName">@team.City</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>

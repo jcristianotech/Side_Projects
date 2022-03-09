@@ -1,0 +1,70 @@
+﻿@using JohnTestWebApp.Models
+@model TeamViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>View</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.Id)
+    <div class="detailsView">
+    <div>
+    @if (File.Exists(Server.MapPath("/Images/" + Model.TeamPictureFileName)))
+    {
+        <img class="image" src="/Images/@Model.TeamPictureFileName" />
+    }
+    else
+    {
+        <img class="image" src="/Images/USHL.jpg" />
+    }
+        <h3></h3>
+    </div>
+    <div>
+
+    </div>
+    <div class="center">
+        @Html.LabelFor(m => m.Conference)
+        @Html.EditorFor(m => m.Conference)
+        @Html.ValidationMessageFor(m => m.Conference)
+    </div>
+
+    <div class="center">
+        @Html.LabelFor(m => m.Name)
+        @Html.EditorFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="center">
+        @Html.LabelFor(m => m.YearFounded)
+        @Html.EditorFor(m => m.YearFounded)
+        @Html.ValidationMessageFor(m => m.YearFounded)
+    </div>
+    <div class="center">
+        @Html.LabelFor(m => m.Arena)
+        @Html.EditorFor(m => m.Arena)
+        @Html.ValidationMessageFor(m => m.Arena)
+    </div>
+    <div class="center">
+        @Html.LabelFor(m => m.Capacity)
+        @Html.EditorFor(m => m.Capacity)
+        @Html.ValidationMessageFor(m => m.Capacity)
+    </div>
+    <div class="center">
+        @Html.LabelFor(m => m.City)
+        @Html.EditorFor(m => m.City)
+        @Html.ValidationMessageFor(m => m.City)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
